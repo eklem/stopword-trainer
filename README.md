@@ -21,3 +21,5 @@ Takes a set of line delimited JSON objects (documents) as input and wanted lengt
 ### Output
 Outputs an array of stopwords, sorted from most likely to least likely.
 
+## Calculation
+Base it on the research paper: [Automated Stopwords Identification in Punjabi Documents](http://ijoes.vidyapublications.com/paper/Vol8/15-Vol8.pdf) by Rajeev Puri, Dr. R.P.S. Bedi and Dr. Vishal Goyal. It shows a method combining frequency of a word in a document corpus and frequency of that same word in a single document.
