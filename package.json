@@ -1,0 +1,31 @@
+{
+  "name": "stopword-trainer",
+  "version": "0.0.1",
+  "description": "A module for creating stopword lists based on a set of documents.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eklem/stopword-trainer.git"
+  },
+  "dependencies": {
+    "ndjson": "1.5.0",
+    "request": "2.81.0"
+  },
+  "keywords": [
+    "stopword",
+    "stopwords",
+    "nlp",
+    "document",
+    "processing",
+    "language"
+  ],
+  "author": "Espen Klem",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eklem/stopword-trainer/issues"
+  },
+  "homepage": "https://github.com/eklem/stopword-trainer#readme"
+}
