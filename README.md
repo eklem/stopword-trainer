@@ -1,6 +1,9 @@
 # stopword-trainer
 `stopword-trainer` is going to be a node module for creating stopword lists based on your own set of documents. These lists can easily be used together with the [`stopword`](https://github.com/fergiemcdowall/stopword/) module to strip stopwords from an input text.
 
+[![NPM version][npm-version-image]][npm-url]
+[![NPM downloads][npm-downloads-image]][npm-url]
+[![MIT License][license-image]][license-url]
 
 ## Reasons for generating your own list of stopwords?
 
@@ -24,3 +27,9 @@ Outputs an array of stopwords, sorted from most likely to least likely.
 
 ## Calculation of word frequency
 Base it on the research paper: [Automated Stopwords Identification in Punjabi Documents](http://ijoes.vidyapublications.com/paper/Vol8/15-Vol8.pdf) by Rajeev Puri, Dr. R.P.S. Bedi and Dr. Vishal Goyal. It shows a method combining frequency of a word in a document corpus and frequency of that same word in a single document.
+
+[license-image]: http://img.shields.io/badge/license-MIT-blue.svg?style=flat
+[license-url]: LICENSE
+[npm-url]: https://npmjs.org/package/stopword-trainer
+[npm-version-image]: http://img.shields.io/npm/v/stopword-trainer.svg?style=flat
+[npm-downloads-image]: http://img.shields.io/npm/dm/stopword-trainer.svg?style=flat
