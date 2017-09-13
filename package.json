@@ -1,7 +1,7 @@
 {
   "name": "stopword-trainer",
-  "version": "0.0.1",
-  "description": "A module for creating stopword lists based on a set of documents.",
+  "version": "0.0.2",
+  "description": "A module for creating stopword lists for any language, based on a set of documents.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
