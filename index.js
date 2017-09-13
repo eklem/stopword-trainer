@@ -7,7 +7,7 @@ let calculationArray = []
 let docCount = 0
 let stopwordArray = []
 
-request('https://rawgit.com/fergiemcdowall/reuters-21578-json/master/data/fullFileStream/full.str')
+request('https://rawgit.com/fergiemcdowall/reuters-21578-json/master/data/fullFileStream/justTen.str')
   .pipe(ndjson.parse())
   .on('data', function(obj) {
     docCount++
@@ -22,7 +22,7 @@ request('https://rawgit.com/fergiemcdowall/reuters-21578-json/master/data/fullFi
     //console.dir(textArray)
     // loop throug array and call countWords for each word
     for (let word of textArray) {
-      countWords(word)  
+      countWords(word,docCount)  
     }
     //console.log(calculationArray)
   })
@@ -37,19 +37,24 @@ request('https://rawgit.com/fergiemcdowall/reuters-21578-json/master/data/fullFi
   })
 
 /* Calculate per corups frequency */
-function countWords (word) {
+function countWords (word, documentId) {
   if (typeof _.find(calculationArray, { 'word': word }) !== "undefined") {
-    //console.log('Hello found!')
     let wordAtIndex = _.findIndex(calculationArray, {word: word});
     //console.log('wordAtIndex: ' + wordAtIndex)
     calculationArray[wordAtIndex].inCorpus = calculationArray[wordAtIndex].inCorpus + 1
     //console.log(calculationArray[wordAtIndex])
-  }
-  if (typeof _.find(calculationArray, { 'word': word }) === "undefined") {
+    // Do check on docCount > lastSpottedIn. If so, inDocs += 1 and lastSpottedIn = docCount
+    if (documentId > calculationArray[wordAtIndex].lastSpottedIn) {
+      calculationArray[wordAtIndex].inDocs = calculationArray[wordAtIndex].inDocs + 1
+      calculationArray[wordAtIndex].lastSpottedIn = documentId
+    }
+  } else if (typeof _.find(calculationArray, { 'word': word }) === "undefined") {
     //console.log('Hello not found!')
     var wordObject = {
       word: word,
-      inCorpus: 1
+      inCorpus: 1,
+      inDocs: 1,
+      lastSpottedIn: documentId
     }
     calculationArray.push(wordObject)    
   }
@@ -65,5 +70,3 @@ function countWords (word) {
     G: Check if in doc from before and skip if yes
     H: Do per-document calculation
 */
-  
-  
