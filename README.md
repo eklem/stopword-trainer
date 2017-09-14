@@ -26,7 +26,7 @@ Takes a set of line delimited JSON objects (documents) as input and wanted lengt
 Outputs an array of stopwords, sorted from most likely to least likely.
 
 ## Calculation of word frequency
-Base it on the research paper: [Automated Stopwords Identification in Punjabi Documents](http://ijoes.vidyapublications.com/paper/Vol8/15-Vol8.pdf) by Rajeev Puri, Dr. R.P.S. Bedi and Dr. Vishal Goyal. It shows a method combining frequency of a word in a document corpus and frequency of that same word in a single document.
+... something TF-DF
 
 [license-image]: http://img.shields.io/badge/license-MIT-blue.svg?style=flat
 [license-url]: LICENSE
