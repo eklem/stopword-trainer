@@ -57,7 +57,7 @@ function countWords (word, documentId) {
 
 function calculateStopwords (calculationArray, totalDocs) {
   for (i = 0; i < calculationArray.length; ++i) {
-    calculationArray[i].stopWordiness = (calculationArray[i].inCorpus / totalDocs) * (1 / ((Math.log(totalDocs/(calculationArray[i].inDocs - 1)))) / totalDocs)
+    calculationArray[i].stopWordiness = (calculationArray[i].inCorpus / totalDocs) * (1 / (Math.log(totalDocs/(calculationArray[i].inDocs - 1))))
   }
 }
 
