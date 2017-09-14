@@ -17,7 +17,7 @@ request('https://rawgit.com/fergiemcdowall/reuters-21578-json/master/data/fullFi
       value = _.lowerCase(value)
       text += (' ' + value)
     }
-    var textArray = _.words(text, /[^, ]+/g)
+    var textArray = _.words(text, /[^\,.!"#$%&()\[\]{}\/\\ 0-9\f\n\r\t]+/g)
     for (let word of textArray) {
       countWords(word, docCount)  
     }
