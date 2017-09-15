@@ -16,8 +16,23 @@ Stopword has your language included, but you think the quality could be better, 
 ### Tribal language
 In any group of people you will get a sort of tribal language, be it a big corporation, a gaming community or a research journal. To get a stopword that works well here, you need to train it on actual words used within the group.
 
-## Use
-Commandline tool.
+## Usage
+
+### Options
+```console
+$ node index.js [options]
+
+  Options:
+
+    -V, --version                                         output the version number
+    -d, --data [http://example.com/docs.str]              The data be processed on a streaming line delimited JSON format
+    -h, --help                                            output usage information
+```
+
+### Example
+```console
+$ node index.js -d https://rawgit.com/fergiemcdowall/reuters-21578-json/master/data/fullFileStream/justTen.str
+```
 
 ### Input
 Takes a set of line delimited JSON objects (documents) as input and wanted length of stopwordlist.
@@ -26,7 +41,7 @@ Takes a set of line delimited JSON objects (documents) as input and wanted lengt
 Outputs an array of stopwords, sorted from most likely to least likely.
 
 ## Calculation of word frequency
-... something TF-DF
+... something TF-DF (Term Frequency - Document Frequency)
 
 [license-image]: http://img.shields.io/badge/license-MIT-blue.svg?style=flat
 [license-url]: LICENSE

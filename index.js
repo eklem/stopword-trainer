@@ -1,13 +1,33 @@
+#!/usr/bin/env node
+
 const _ = require('lodash')
 const fs = require('fs')
 const ndjson = require('ndjson')
+const program = require('commander')
 const request = require('request')
 
 let calculationArray = []
 let docCount = 0
 let stopwordArray = []
 
-request('https://rawgit.com/fergiemcdowall/reuters-21578-json/master/data/fullFileStream/full.str')
+/* program construction */
+program
+  .version('0.0.5')
+  .option('-d, --data [http://example.com/docs.str]', 'The data be processed on a streaming line delimited JSON format', 'https://rawgit.com/fergiemcdowall/reuters-21578-json/master/data/fullFileStream/justTen.str')
+  .option('-c, --configuration [http://example.com/config.json]', 'Configuration file for ', 'https://rawgit.com/eklem/stopword-trainer/master/configuration.json')
+  .parse(process.argv)
+
+if (program.data) {
+  console.log('Data: %j ', program.data)
+  var data = program.data
+  }
+
+/* Request data
+     A: Get data
+     B: parse JSON objects
+     C: Go through each object and count words
+     D: Calculate stopwords and save to file */
+request(data)
   .pipe(ndjson.parse())
   .on('data', function(obj) {
     docCount++
@@ -33,7 +53,9 @@ request('https://rawgit.com/fergiemcdowall/reuters-21578-json/master/data/fullFi
     console.log((calculationArray.length + 1) + ' words in ' + docCount + ' documents processed')
   })
 
-/* Word frequency counting. Both per document corpus and in how many documents it's found */
+/* Word frequency counting.
+     A: Total amount in document corpus
+     B: In how many documents a word is found */
 function countWords (word, documentId) {
   if (typeof _.find(calculationArray, { 'word': word }) !== "undefined") {
     let wordAtIndex = _.findIndex(calculationArray, {word: word});
@@ -55,18 +77,9 @@ function countWords (word, documentId) {
   }
 }
 
+/* Calculate TF-DF */
 function calculateStopwords (calculationArray, totalDocs) {
   for (i = 0; i < calculationArray.length; ++i) {
     calculationArray[i].stopWordiness = (calculationArray[i].inCorpus / totalDocs) * (1 / (Math.log(totalDocs/(calculationArray[i].inDocs - 1))))
   }
 }
-
-/* ### Do stuff with string:
-   *A: Get only words & numbers(regex)
-   *B: split up into array
-   *C: Add to calculation array
-   *D: Check if in array from before and update count instead
-   *E: Do per-corpus calculation
-   *G: Check if word is in doc from before and skip if yes
-   *H: Do per-document calculation
-*/
