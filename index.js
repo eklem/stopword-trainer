@@ -10,7 +10,7 @@ let calculationArray = []
 let docCount = 0
 let stopwordArray = []
 
-/* program construction */
+/* Commandline construction */
 program
   .version('0.0.5')
   .option('-d, --data [http://example.com/docs.str]', 'The data be processed on a streaming line delimited JSON format', 'https://rawgit.com/fergiemcdowall/reuters-21578-json/master/data/fullFileStream/justTen.str')
@@ -47,9 +47,11 @@ request(data)
     calculateStopwords(calculationArray, docCount)
     calculationArray = _.sortBy(calculationArray, ['stopWordiness']);
     _.reverse(calculationArray)
-    // Do calculation with calculationArray, sort the data and write stopwordArray to file
+    stopwordArray = _.map(calculationArray, 'word');
     calculationJSON = JSON.stringify(calculationArray)
-    fs.writeFileSync('calculation.json', calculationJSON)
+    stopwordJSON = JSON.stringify(stopwordArray)
+    fs.writeFileSync('stopwords-calculation.json', calculationJSON)
+    fs.writeFileSync('stopwords.json', stopwordJSON)
     console.log((calculationArray.length + 1) + ' words in ' + docCount + ' documents processed')
   })
 
