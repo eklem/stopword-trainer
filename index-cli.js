@@ -15,14 +15,14 @@ fs.createReadStream(dataStream)
   .on('error', function(err) {
     console.log('Oops, an error: ' + err)
   })
-  .pipe(ndjson.parse(opts))
+  .pipe(ndjson.parse())
   .on('data', function (obj) {
-    console.log(opts)
+    //console.log(opts)
     opts.docCount++
     swt.termFrequency(obj, opts.docCount, opts.calculationArray)   
   })
   .on('end', function () {
-    console.log(calculationArray)
+    console.log(opts)
   })
 
   

@@ -15,7 +15,7 @@ let termFrequency = function (obj, docCount, calculationArray) {
     countWords(word, docCount, calculationArray)
     //console.log(word + ': ' + docCount)
   }
-  console.log('Processing doc: #' + docCount)
+  //console.log('Processing doc: #' + docCount)
 
 
 function countWords (word, documentId, calculationArray) {
@@ -37,10 +37,9 @@ function countWords (word, documentId, calculationArray) {
     }
     calculationArray.push(wordObject)    
   }
-  console.log(calculationArray)
 }
+  console.log('Calculation array: ' + calculationArray.length)
   return calculationArray
-
 }
 
 // Export functions as swt:
