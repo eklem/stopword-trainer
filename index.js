@@ -1,3 +1,4 @@
+const fs = require('fs')
 const _ = require('lodash')
 
 /* Request data, count, do calculation, save files */
@@ -15,10 +16,11 @@ let termFrequency = function (obj, docCount, calculationArray) {
     countWords(word, docCount, calculationArray)
     //console.log(word + ': ' + docCount)
   }
-  //console.log('Processing doc: #' + docCount)
+  console.log('Processing doc: #' + docCount)
+  console.log('Calculation array: ' + calculationArray.length)
+}
 
-
-function countWords (word, documentId, calculationArray) {
+let countWords = function (word, documentId, calculationArray) {
   if (typeof _.find(calculationArray, { 'word': word }) !== "undefined") {
     let wordAtIndex = _.findIndex(calculationArray, {word: word});
     calculationArray[wordAtIndex].inCorpus = calculationArray[wordAtIndex].inCorpus + 1
@@ -38,11 +40,30 @@ function countWords (word, documentId, calculationArray) {
     calculationArray.push(wordObject)    
   }
 }
-  console.log('Calculation array: ' + calculationArray.length)
-  return calculationArray
+
+let documentFrequency = function (docCount, calculationArray) {
+  calculateStopwords(calculationArray, docCount)
+  calculationArray = _.sortBy(calculationArray, ['stopWordiness']);
+  _.reverse(calculationArray)
+  stopwordArray = _.map(calculationArray, 'word');
+  calculationJSON = JSON.stringify(calculationArray)
+  stopwordJSON = JSON.stringify(stopwordArray)
+  fs.writeFileSync('stopwords-calculation.json', calculationJSON)
+  fs.writeFileSync('stopwords.json', stopwordJSON)
+  console.log((calculationArray.length + 1) + ' words in ' + docCount + ' documents processed')
+  return stopwordJSON
+}
+
+
+let calculateStopwords = function (calculationArray, totalDocs) {
+  for (i = 0; i < calculationArray.length; ++i) {
+    calculationArray[i].stopWordiness = (calculationArray[i].inCorpus / totalDocs) * (1 / (Math.log(totalDocs/(calculationArray[i].inDocs - 1))))
+  }
 }
 
 // Export functions as swt:
 // var swt = require('stopword-trainer')
-module.exports.termFrequency = termFrequency;
-
+module.exports.termFrequency = termFrequency
+module.exports.countWords = countWords
+module.exports.documentFrequency = documentFrequency
+module.exports.calculateStopwords = calculateStopwords

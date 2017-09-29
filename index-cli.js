@@ -4,7 +4,7 @@ const fs = require('fs')
 const ndjson = require('ndjson')
 const swt = require('./index.js')
 
-let dataStream = './node_modules/reuters-21578-json/data/fullFileStream/justTen.str'
+let dataStream = './node_modules/reuters-21578-json/data/fullFileStream/full.str'
 let opts = {
   docCount: 0,
   calculationArray: [],
@@ -17,12 +17,11 @@ fs.createReadStream(dataStream)
   })
   .pipe(ndjson.parse())
   .on('data', function (obj) {
-    //console.log(opts)
     opts.docCount++
     swt.termFrequency(obj, opts.docCount, opts.calculationArray)   
   })
   .on('end', function () {
-    console.log(opts)
+    swt.documentFrequency(opts.docCount, opts.calculationArray)
   })
 
   
