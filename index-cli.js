@@ -1,28 +1,31 @@
-#!/usr/bin/env node
-
 const fs = require('fs')
-const ndjson = require('ndjson')
 const swt = require('./index.js')
 
 let dataStream = './node_modules/reuters-21578-json/data/fullFileStream/full.str'
-let opts = {
+opts = {
   docCount: 0,
-  calculationArray: [],
   stopwordArray: [],
+  calculationArray: []
 }
 
 fs.createReadStream(dataStream)
   .on('error', function(err) {
-    console.log('Oops, an error: ' + err)
+    console.log('Okay, an error: ' + err)
   })
-  .pipe(ndjson.parse())
+  .pipe(swt.ndjson.parse())
   .on('data', function (obj) {
     opts.docCount++
-    swt.termFrequency(obj, opts.docCount, opts.calculationArray)   
+    swt.termFrequency(obj, opts.docCount, opts.calculationArray)
   })
-  .on('end', function () {
+  .on ('end', function () {
     swt.documentFrequency(opts.docCount, opts.calculationArray)
+    // opts.stopwordArray and opts.calculationArray populated
+    calculationJSON = JSON.stringify(opts.calculationArray)
+    stopwordJSON = JSON.stringify(opts.stopwordArray)
+    fs.writeFileSync('stopwords-calculation.json', calculationJSON)
+    fs.writeFileSync('stopwords.json', stopwordJSON)
   })
 
-  
 
+ 
+  

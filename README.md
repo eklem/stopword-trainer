@@ -18,30 +18,44 @@ In any group of people you will get a sort of tribal language, be it a big corpo
 
 ## Usage
 
-### Options
-```console
-$ node index.js [options]
+### 
+tbd...
 
-  Options:
-
-    -V, --version                                         output the version number
-    -d, --data [http://example.com/docs.str]              The data be processed on a streaming line delimited JSON format
-    -h, --help                                            output usage information
-```
 
 ### Example
-```console
-$ node index.js -d https://rawgit.com/fergiemcdowall/reuters-21578-json/master/data/fullFileStream/justTen.str
+```javascript
+const swt = require('stopword-trainer')
+
+let dataStream = 'file-full-of-newline-delimited-JSON-objecgts.str'
+opts = {
+  docCount: 0,
+  stopwordArray: [],
+  calculationArray: []
+}
+
+fs.createReadStream(dataStream)
+  .on('error', function(err) {
+    // Error
+  })
+  .pipe(swt.ndjson.parse())
+  .on('data', function (obj) {
+    opts.docCount++
+    swt.termFrequency(obj, opts.docCount, opts.calculationArray)
+  })
+  .on ('end', function () {
+    swt.documentFrequency(opts.docCount, opts.calculationArray)
+    // opts.stopwordArray and opts.calculationArray populated
+  })
 ```
 
 ### Input
-Takes a set of line delimited JSON objects (documents) as input and wanted length of stopwordlist.
+Takes a set of line delimited JSON objects (documents) as input and wanted length of stopwordlist. Stopword-trainer is using [ndjson]() to cut a newline delimited JSON into JSON objects.
 
 ### Output
-Outputs an array of stopwords, sorted from most likely to least likely.
+Outputs `stopwordArray`, sorted from most likely to least likely. Needs to be sliced before use.
 
 ## Calculation of word frequency
-... something TF-DF (Term Frequency - Document Frequency)
+A simple version of TF-DF (Term Frequency - Document Frequency)
 
 [license-image]: http://img.shields.io/badge/license-MIT-blue.svg?style=flat
 [license-url]: LICENSE
