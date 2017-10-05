@@ -18,19 +18,16 @@ In any group of people you will get a sort of tribal language, be it a big corpo
 
 ## Usage
 
-### 
-tbd...
-
-
 ### Example
 ```javascript
 const swt = require('stopword-trainer')
+const dataStream = 'stream-of-newline-delimited-JSON-objects.str'
 
-let dataStream = 'file-full-of-newline-delimited-JSON-objecgts.str'
 opts = {
   docCount: 0,
   stopwordArray: [],
-  calculationArray: []
+  calculationArray: [],
+  max: 0
 }
 
 fs.createReadStream(dataStream)
@@ -39,14 +36,27 @@ fs.createReadStream(dataStream)
   })
   .pipe(swt.ndjson.parse())
   .on('data', function (obj) {
-    opts.docCount++
-    swt.termFrequency(obj, opts.docCount, opts.calculationArray)
+    swt.termFrequency(obj)
   })
   .on ('end', function () {
-    swt.documentFrequency(opts.docCount, opts.calculationArray)
+    swt.documentFrequency(opts.max)
     // opts.stopwordArray and opts.calculationArray populated
   })
 ```
+
+### Console client
+```
+  $index-cli [options]
+
+
+  Options:
+
+    -V, --version                   output the version number
+    -f --file <file>                The data file to be processed on a line delimited, streaming JSON format
+    -m --max [number-of-stopwords]  The max number of stopwords to store. All if not defined
+    -h, --help                      output usage information```
+
+
 
 ### Input
 Takes a set of line delimited JSON objects (documents) as input and wanted length of stopwordlist. Stopword-trainer is using [ndjson]() to cut a newline delimited JSON into JSON objects.
