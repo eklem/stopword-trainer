@@ -55,8 +55,7 @@ fs.createReadStream(dataStream)
     -f --file <file>                The data file to be processed on a line delimited, streaming JSON format
     -m --max [number-of-stopwords]  The max number of stopwords to store. All if not defined
     -h, --help                      output usage information```
-
-
+```
 
 ### Input
 Takes a set of line delimited JSON objects (documents) as input and wanted length of stopwordlist. Stopword-trainer is using [ndjson]() to cut a newline delimited JSON into JSON objects.
