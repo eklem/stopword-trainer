@@ -1,14 +1,28 @@
+#!/usr/bin/env node
+
 const fs = require('fs')
+const program = require('commander')
 const swt = require('./index.js')
 
-let dataStream = './node_modules/reuters-21578-json/data/fullFileStream/full.str'
 opts = {
   docCount: 0,
   stopwordArray: [],
   calculationArray: []
 }
 
-fs.createReadStream(dataStream)
+/* program construction */
+program
+  .version('0.1.1')
+  .option('-d, --data [docs.str]', 'The data to be processed on a streaming line delimited JSON format')
+  .parse(process.argv)
+
+if (program.data) {
+  console.log('Data: %j ', program.data)
+  var data = program.data
+  }
+              
+
+fs.createReadStream(data)
   .on('error', function(err) {
     console.log('Okay, an error: ' + err)
   })
