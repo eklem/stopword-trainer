@@ -1,10 +1,9 @@
 # stopword-trainer
 `stopword-trainer` is a node module for creating stopword lists based on your own set of documents. These lists can easily be used together with the [`stopword`](https://github.com/fergiemcdowall/stopword/) module to strip stopwords from an input text.
 
-[![NPM version][npm-version-image]][npm-url]
-[![NPM downloads][npm-downloads-image]][npm-url]
-[![MIT License][license-image]][license-url]
-[![Travis CI][license-image]][license-url]
+[![NPM version](http://img.shields.io/npm/v/stopword-trainer.svg?style=flat)](https://npmjs.org/package/stopword-trainer)
+[![NPM downloads](http://img.shields.io/npm/dm/stopword-trainer.svg?style=flat)](https://npmjs.org/package/stopword-trainer)
+[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 [![Build Status](https://travis-ci.org/eklem/stopword-trainer.svg?branch=master)](https://travis-ci.org/eklem/stopword-trainer)
 
 ## Reasons for generating your own list of stopwords?
@@ -67,9 +66,3 @@ Outputs `stopwordArray`, sorted from most likely to least likely. Needs to be sl
 
 ## Calculation of word frequency
 A simple version of TF-DF (Term Frequency - Document Frequency)
-
-[license-image]: http://img.shields.io/badge/license-MIT-blue.svg?style=flat
-[license-url]: LICENSE
-[npm-url]: https://npmjs.org/package/stopword-trainer
-[npm-version-image]: http://img.shields.io/npm/v/stopword-trainer.svg?style=flat
-[npm-downloads-image]: http://img.shields.io/npm/dm/stopword-trainer.svg?style=flat
