@@ -2,22 +2,22 @@ const test           = require('tape')
 const fs             = require('fs')
 const swt            = require('../index.js')
 
-let reutersFull = './node_modules/reuters-21578-json/data/fullFileStream/full.str'
+let reuters000 = './node_modules/reuters-21578-json/data/fullFileStream/000.str'
 opts = {
     docCount: 0,
     stopwordArray: [],
     calculationArray: [],
     max: 100
 }
-fs.createReadStream(reutersFull)
+fs.createReadStream(reuters000)
   .pipe(swt.ndjson.parse())
   .on('data', function (obj) {
     swt.termFrequency(obj)
   })
   .on ('end', function () {
     swt.documentFrequency(opts.max)
-    test('100 stopwords calculated from full.str', (assert) => {
-      const expected = ["the","of","to","said","reuter","and","a","in","for","it","mln","usa","dlrs","on","mar","is","its","from","by","pct","at","will","be","with","that","year","was","s","has","vs","an","u","as","he","inc","billion","company","would","not","which","cts","corp","new","apr","but","are","net","this","have","bank","were","one","last","had","or","also","market","two","stock","up","about","co","earn","shares","share","they","been","trade","loss","may","shr","more","first","april","after","sales","dlr","oil","march","over","debt","than","other","exchange","interest","government","three","japan","group","no","banks","international","per","price","told","prices","their","qtr","some","under"]
+    test('100 stopwords calculated from 000.str (1000 documents)', (assert) => {
+      const expected = ["the","of","reuter","to","said","and","in","a","mar","for","it","mln","dlrs","on","usa","from","is","its","pct","will","with","at","be","by","year","was","that","s","vs","has","u","an","as","new","billion","inc","cts","not","company","which","corp","would","he","one","but","this","net","are","last","have","bank","were","feb","two","market","march","or","had","about","up","they","also","earn","share","stock","been","government","loss","shr","after","co","oil","shares","over","more","no","than","prices","banks","debt","other","week","january","first","three","exchange","group","interest","per","international","sales","expected","if","five","february","dlr","under","some","their","april"]
       assert.deepEqual(opts.stopwordArray, expected)
       assert.end()
     })
