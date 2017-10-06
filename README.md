@@ -4,6 +4,8 @@
 [![NPM version][npm-version-image]][npm-url]
 [![NPM downloads][npm-downloads-image]][npm-url]
 [![MIT License][license-image]][license-url]
+[![Travis CI][license-image]][license-url]
+[![Build Status](https://travis-ci.org/eklem/stopword-trainer.svg?branch=master)](https://travis-ci.org/eklem/stopword-trainer)
 
 ## Reasons for generating your own list of stopwords?
 
