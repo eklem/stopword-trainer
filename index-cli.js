@@ -13,7 +13,7 @@ opts = {
 
 /* program construction */
 program
-  .version('0.1.2')
+  .version('0.1.4')
   .option('-f --file <file>', 'The data file to be processed on a line delimited, streaming JSON format')
   .option('-m --max [number-of-stopwords]', 'The max number of stopwords to store. All if not defined')
   .parse(process.argv)
