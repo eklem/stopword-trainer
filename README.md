@@ -23,17 +23,9 @@ In any group of people you will get a sort of tribal language, be it a big corpo
 ```javascript
 const swt = require('stopword-trainer')
 
-opts = {
-  docCount: 0,
-  stopwordArray: [],
-  calculationArray: [],
-  max: 0,
-  extractionKeys: []
-}
-
 fs.createReadStream(dataStream)
   .on('error', function(err) {
-    // Error
+    // err
   })
   .pipe(swt.ndjson.parse())
   .on('data', function (obj) {
@@ -41,8 +33,19 @@ fs.createReadStream(dataStream)
   })
   .on ('end', function () {
     swt.documentFrequency(opts.max)
-    // opts.stopwordArray and opts.calculationArray populated
+    // data.stopwordArray and data.calculationArray populated
   })
+```
+
+### Options
+* `max` - Max number of stopwords to be stored in `data.stopwordArray`. Defaults to 100
+* `extractionKeys` - Array of keys for which fields to process from objects. Defaults to all fields (all values for end keys).
+
+```javascript
+opts = {
+  max: 0,
+  extractionKeys: []
+}
 ```
 
 ### Console client

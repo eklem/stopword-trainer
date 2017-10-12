@@ -4,14 +4,6 @@ const fs = require('fs')
 const program = require('commander')
 const swt = require('./index.js')
 
-opts = {
-  docCount: 0,
-  stopwordArray: [],
-  calculationArray: [],
-  max: 0,
-  extractionKeys: []
-}
-
 /* program construction */
 program
   .version('0.1.4')
@@ -26,11 +18,7 @@ if (program.file) {
 }
 if (program.max) {
   opts.max = Number(program.max)
-  if (opts.max > 0) {
-    console.log('Will store ' + opts.max + ' stopwords')
-  } else {
-    console.log('Will store all words as stopwords')
-  }
+  console.log('Will store ' + opts.max + ' stopwords')
 }
 if (program.keys) {
   opts.extractionKeys = program.keys
@@ -51,12 +39,12 @@ fs.createReadStream(file)
   .pipe(swt.ndjson.parse())
   .on('data', function (obj) {
     swt.termFrequency(obj)
-    console.log('Processing document #' + opts.docCount)
+    console.log('Processing document #' + data.docCount)
   })
   .on ('finish', function () {
     swt.documentFrequency(opts.max)
-    calculationJSON = JSON.stringify(opts.calculationArray)
-    stopwordJSON = JSON.stringify(opts.stopwordArray)
+    calculationJSON = JSON.stringify(data.calculationArray)
+    stopwordJSON = JSON.stringify(data.stopwordArray)
     fs.writeFileSync('stopwords-calculation.json', calculationJSON)
     fs.writeFileSync('stopwords.json', stopwordJSON)
     console.log('Finished processing')
