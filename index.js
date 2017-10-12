@@ -4,8 +4,10 @@ const ndjson = require('ndjson')
 
 
 let termFrequency = function (obj) {
+  if (opts.docCount === 0) {
+    getObjValues(obj)
+  }
   opts.docCount++
-  getObjValues(obj)
   obj = _.map(opts.extractionKeys, _.propertyOf(obj))
   let text = ''
   for(var key in opts.extractionKeys) {

@@ -4,7 +4,7 @@
   "description": "A module for creating stopword lists for any language, based on a set of documents.",
   "main": "index.js",
   "scripts": {
-    "test": "node test/basic.js && node test/basic-full.js"
+    "test": "node test/basic.js && node test/basic-full.js && node test/fieldedCalculation.js"
   },
   "repository": {
     "type": "git",

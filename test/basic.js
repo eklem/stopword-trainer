@@ -4,10 +4,11 @@ const swt            = require('../index.js')
 
 let reutersJustTen = './node_modules/reuters-21578-json/data/fullFileStream/justTen.str'
 opts = {
-    docCount: 0,
-    stopwordArray: [],
-    calculationArray: [],
-    max: 10
+  docCount: 0,
+  stopwordArray: [],
+  calculationArray: [],
+  max: 10,
+  extractionKeys: []
 }
 fs.createReadStream(reutersJustTen)
   .pipe(swt.ndjson.parse())
