@@ -1,17 +1,32 @@
-const _ = require('lodash')
+const _      = require('lodash')
+const keys   = require('object-end-keys')
 const ndjson = require('ndjson')
+
 
 let termFrequency = function (obj) {
   opts.docCount++
+  getObjValues(obj)
+  obj = _.map(opts.extractionKeys, _.propertyOf(obj))
   let text = ''
-  for(var key in obj) {
+  for(var key in opts.extractionKeys) {
     let value = obj[key]
-    value = _.lowerCase(value)
+    KEY = _.upperCase(key)
+    value = KEY += _.lowerCase(value)
     text += (' ' + value)
   }
   let textArray = _.words(text, /[^\,.!"#$%&()\[\]{}\/\\ 0-9\f\n\r\t]+/g)
   for (let word of textArray) {
     countWords(word, opts.docCount)
+  }
+  //console.log(textArray)
+}
+
+let getObjValues = function(obj) {
+  if (typeof opts.extractionKeys[0] === 'undefined' || typeof opts.extractionKeys[0] === null) {
+    opts.extractionKeys = keys(obj)
+    console.log('keys found in object: ' + opts.extractionKeys)
+  } else {
+    console.log('keys defined: ' + opts.extractionKeys)
   }
 }
 
@@ -49,6 +64,7 @@ let documentFrequency = function (maxStopwords) {
 }
 
 // Export functions as swt:
+module.exports.getObjValues = getObjValues
 module.exports.termFrequency = termFrequency
 module.exports.documentFrequency = documentFrequency
 module.exports.ndjson = ndjson

@@ -8,14 +8,16 @@ opts = {
   docCount: 0,
   stopwordArray: [],
   calculationArray: [],
-  max: 0
+  max: 0,
+  extractionKeys: []
 }
 
 /* program construction */
 program
   .version('0.1.4')
-  .option('-f --file <file>', 'The data file to be processed on a line delimited, streaming JSON format')
-  .option('-m --max [number-of-stopwords]', 'The max number of stopwords to store. All if not defined')
+  .option('-f --file <file>', 'the data file to be processed on a line delimited, streaming JSON format')
+  .option('-k --keys [object keys]', 'comma-separated list of object keys for all object values to be processed')
+  .option('-m --max [number-of-stopwords]', 'the max number of stopwords to store. All if not defined')
   .parse(process.argv)
 
 if (program.file) {
@@ -29,8 +31,18 @@ if (program.max) {
   } else {
     console.log('Will store all words as stopwords')
   }
-  console.dir(opts)
 }
+if (program.keys) {
+  opts.extractionKeys = program.keys
+  if (program.keys) {
+    opts.extractionKeys = program.keys.split(',')
+    console.log('Will use terms from following fields in objects to calculate stopwords: ' + opts.extractionKeys)
+  } else {
+    console.log('Will use terms from all object values to calculate stopwords')
+  }
+}
+
+console.dir(opts)
 
 fs.createReadStream(file)
   .on('error', function(err) {
@@ -41,7 +53,7 @@ fs.createReadStream(file)
     swt.termFrequency(obj)
     console.log('Processing document #' + opts.docCount)
   })
-  .on ('end', function () {
+  .on ('finish', function () {
     swt.documentFrequency(opts.max)
     calculationJSON = JSON.stringify(opts.calculationArray)
     stopwordJSON = JSON.stringify(opts.stopwordArray)
@@ -49,7 +61,3 @@ fs.createReadStream(file)
     fs.writeFileSync('stopwords.json', stopwordJSON)
     console.log('Finished processing')
   })
-
-
- 
-  

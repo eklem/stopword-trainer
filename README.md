@@ -28,7 +28,8 @@ opts = {
   docCount: 0,
   stopwordArray: [],
   calculationArray: [],
-  max: 0
+  max: 0,
+  extractionKeys: []
 }
 
 fs.createReadStream(dataStream)
@@ -53,8 +54,9 @@ fs.createReadStream(dataStream)
   Options:
 
     -V, --version                   output the version number
-    -f --file <file>                The data file to be processed on a line delimited, streaming JSON format
-    -m --max [number-of-stopwords]  The max number of stopwords to store. All if not defined
+    -f --file <file>                the data file to be processed on a line delimited, streaming JSON format
+    -k --keys [object keys]         comma-separated list of object keys for all object values to be processed
+    -m --max [number-of-stopwords]  the max number of stopwords to store. All if not defined
     -h, --help                      output usage information
 ```
 
@@ -65,4 +67,7 @@ Takes a set of line delimited JSON objects (documents) as input and wanted lengt
 Outputs `stopwordArray`, sorted from most likely to least likely. Needs to be sliced before use.
 
 ## Calculation of word frequency
-A simple version of TF-DF (Term Frequency - Document Frequency)
+A simple version of TF-DF (Term Frequency - Document Frequency). The math on how stop-worthy a term is:
+```javascript
+stopWordiness = (termInCorpus / totDocs) * (1 / (Math.log(totDocs/(termInDocs - 1))))
+```
