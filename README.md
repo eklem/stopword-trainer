@@ -22,7 +22,6 @@ In any group of people you will get a sort of tribal language, be it a big corpo
 ### Example
 ```javascript
 const swt = require('stopword-trainer')
-const dataStream = 'stream-of-newline-delimited-JSON-objects.str'
 
 opts = {
   docCount: 0,
@@ -61,7 +60,7 @@ fs.createReadStream(dataStream)
 ```
 
 ### Input
-Takes a set of line delimited JSON objects (documents) as input and wanted length of stopwordlist. Stopword-trainer is using [ndjson](https://github.com/maxogden/ndjson) to cut a newline delimited JSON into JSON objects.
+Takes a set of line delimited JSON objects (documents) as input and wanted length of stopwordlist. Stopword-trainer is using [ndjson](https://github.com/maxogden/ndjson) to cut a newline delimited JSON into JSON objects: [Example stream file](https://github.com/fergiemcdowall/reuters-21578-json/blob/master/data/fullFileStream/justTen.str).
 
 ### Output
 Outputs `stopwordArray`, sorted from most likely to least likely. Needs to be sliced before use.
