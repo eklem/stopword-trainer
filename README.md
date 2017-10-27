@@ -1,4 +1,6 @@
 # stopword-trainer
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/eklem/stopword-trainer.svg)](https://greenkeeper.io/)
 `stopword-trainer` is a node module for creating stopword lists based on your own set of documents. These lists can easily be used together with the [`stopword`](https://github.com/fergiemcdowall/stopword/) module to strip stopwords from an input text.
 
 [![NPM version](http://img.shields.io/npm/v/stopword-trainer.svg?style=flat)](https://npmjs.org/package/stopword-trainer)
