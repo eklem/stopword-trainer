@@ -1,6 +1,6 @@
 {
   "name": "stopword-trainer",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "A module for creating stopword lists for any language, based on a set of documents.",
   "main": "index.js",
   "scripts": {
