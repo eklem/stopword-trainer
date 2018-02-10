@@ -19,6 +19,9 @@ Stopword has your language included, but you think the quality could be better, 
 ### Tribal language
 In any group of people you will get a sort of tribal language, be it a big corporation, a gaming community or a research journal. To get a stopword that works well here, you need to train it on actual words used within the group.
 
+### Need help?
+If you're trying to make a list of stopwords but have some problems, [open an issue](https://github.com/eklem/stopword-trainer/issues/new), and we will try to help.
+
 ## Usage
 
 ### Example
