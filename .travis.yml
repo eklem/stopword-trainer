@@ -4,7 +4,6 @@ notifications:
   slack: norch:wLsHiXjnAH5BdtTq3qtAqGp7
   email: true
 node_js:
-  - '4'
   - '6'
   - '8'
   - '9'
