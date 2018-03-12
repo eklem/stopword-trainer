@@ -11,9 +11,9 @@
     "url": "git+https://github.com/eklem/stopword-trainer.git"
   },
   "dependencies": {
-    "commander": "2.15.0",
-    "lodash": "4.17.5",
-    "ndjson": "1.5.0",
+    "commander": "~2.15.0",
+    "lodash": "~4.17.5",
+    "ndjson": "~1.5.0",
     "object-end-keys": "^3.0.1"
   },
   "devDependencies": {
