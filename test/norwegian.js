@@ -2,7 +2,7 @@ const test           = require('tape')
 const fs             = require('fs')
 const swt            = require('../index.js')
 
-let norwegian = './test/docs-no-nb-justTen.str'
+let norwegian = './node_modules/dataset-misc/docs-no-nb-justTen.str'
 opts.extractionKeys = ['paragraphs']
 fs.createReadStream(norwegian)
   .pipe(swt.ndjson.parse())
