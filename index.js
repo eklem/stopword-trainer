@@ -21,11 +21,11 @@ let termFrequency = function (obj) {
   let text = ''
   for(var key in opts.extractionKeys) {
     let value = obj[key]
-    KEY = _.upperCase(key)
-    value = KEY += _.lowerCase(value)
+    KEY = _.toUpper(key)
+    value = KEY += _.toLower(_.trim(value))
     text += (' ' + value)
   }
-  let textArray = _.words(text, /[^\,.!"#$%&()\[\]{}\/\\ 0-9\f\n\r\t]+/g)
+  let textArray = _.words(text)
   for (let word of textArray) {
     countWords(word, data.docCount)
   }

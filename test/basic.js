@@ -11,7 +11,7 @@ fs.createReadStream(reutersJustTen)
   .on ('end', function () {
     swt.documentFrequency(10)
     test('10 stopwords calculated from justTen.str', (assert) => {
-      const expected = ["the","to","and","of","feb","reuter","said","a","dlrs","for"]
+      const expected = ['the', '1', '4', '0', 'to', '5', 'and', '3', '6', 'of']
       assert.deepEqual(data.stopwordArray, expected)
       assert.end()
     })
