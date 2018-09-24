@@ -1,10 +1,10 @@
 {
   "name": "stopword-trainer",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "A module for creating stopword lists for any language, based on a set of documents.",
   "main": "index.js",
   "scripts": {
-    "test": "node test/basic.js && node test/basic-full.js && node test/fieldedCalculation.js"
+    "test": "node test/basic.js && node test/basic-full.js && node test/fieldedCalculation.js && node test/norwegian.js"
   },
   "repository": {
     "type": "git",

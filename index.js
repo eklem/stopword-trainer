@@ -22,7 +22,7 @@ let termFrequency = function (obj) {
   for(var key in opts.extractionKeys) {
     let value = obj[key]
     KEY = _.toUpper(key)
-    value = KEY += _.toLower(_.trim(value))
+    value = KEY += _.toLower(value)
     text += (' ' + value)
   }
   let textArray = _.words(text)
