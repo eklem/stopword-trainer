@@ -1,5 +1,8 @@
 sudo: false
 language: node_js
+cache:
+  - "node_modules"
+  install: npm install
 notifications:
   slack: norch:wLsHiXjnAH5BdtTq3qtAqGp7
   email: true
