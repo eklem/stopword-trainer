@@ -24,7 +24,7 @@ If you're trying to make a list of stopwords but have some problems, [open an is
 
 ## Usage
 
-### Example
+## Javascript wxample
 ```javascript
 const swt = require('stopword-trainer')
 
@@ -65,6 +65,10 @@ opts = {
     -k --keys [object keys]         comma-separated list of object keys for all object values to be processed
     -m --max [number-of-stopwords]  the max number of stopwords to store. All if not defined
     -h, --help                      output usage information
+  
+  Example:
+  
+    /index-cli.js -f justTen.str -k body -m 200
 ```
 
 ### Input
