@@ -24,7 +24,7 @@ If you're trying to make a list of stopwords but have some problems, [open an is
 
 ## Usage
 
-## Javascript wxample
+## Javascript example
 ```javascript
 const swt = require('stopword-trainer')
 
