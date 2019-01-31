@@ -68,7 +68,7 @@ opts = {
   
   Example:
   
-    /index-cli.js -f justTen.str -k body -m 200
+    ./index-cli.js -f justTen.str -k body -m 200
 ```
 
 ### Input
