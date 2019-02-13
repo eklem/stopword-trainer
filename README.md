@@ -24,7 +24,33 @@ If you're trying to make a list of stopwords but have some problems, [open an is
 
 ## Usage
 
-## Javascript example
+### Console client
+```
+  $index-cli [options]
+
+
+  Options:
+
+    -V, --version                   output the version number
+    -f --file <file>                the data file to be processed on a line delimited, streaming JSON format
+    -k --keys [object keys]         comma-separated list of object keys for all object values to be processed
+    -m --max [number-of-stopwords]  the max number of stopwords to store. All if not defined
+    -h, --help                      output usage information
+  
+  Example:
+  
+    ./index-cli.js -f justTen.str -k body -m 200
+    
+  Result: stopwords.json
+  
+    [
+      "the","0","to","and","of","reuter","said","a","dlrs","1","for","in","at","its","it","2","4","be","5","as",
+      "mln","with","total","would","stock","on","an","is","were","25","will","also","3","price","6","company",
+      "per","has","february","15","have","7","after","one","inc","under","not","8","20","billion"
+    ]
+```
+
+### Javascript example
 ```javascript
 const swt = require('stopword-trainer')
 
@@ -42,7 +68,7 @@ fs.createReadStream(dataStream)
   })
 ```
 
-### Options
+#### Options
 * `max` - Max number of stopwords to be stored in `data.stopwordArray`. Defaults to 100
 * `extractionKeys` - Array of keys for which fields to process from objects. Defaults to all fields (all values for end keys).
 
@@ -53,26 +79,8 @@ opts = {
 }
 ```
 
-### Console client
-```
-  $index-cli [options]
-
-
-  Options:
-
-    -V, --version                   output the version number
-    -f --file <file>                the data file to be processed on a line delimited, streaming JSON format
-    -k --keys [object keys]         comma-separated list of object keys for all object values to be processed
-    -m --max [number-of-stopwords]  the max number of stopwords to store. All if not defined
-    -h, --help                      output usage information
-  
-  Example:
-  
-    ./index-cli.js -f justTen.str -k body -m 200
-```
-
 ### Input
-Takes a set of line delimited JSON objects (documents) as input and wanted length of stopwordlist. Stopword-trainer is using [ndjson](https://github.com/maxogden/ndjson) to cut a newline delimited JSON into JSON objects: [Example stream file](https://github.com/fergiemcdowall/reuters-21578-json/blob/master/data/fullFileStream/justTen.str).
+Takes a set of line delimited JSON objects (documents) as input and wanted (max) amount of stopwords. Stopword-trainer is using [ndjson](https://github.com/maxogden/ndjson) to cut a newline delimited JSON into JSON objects: [Example stream file](https://github.com/fergiemcdowall/reuters-21578-json/blob/master/data/fullFileStream/justTen.str).
 
 ### Output
 Outputs `stopwordArray`, sorted from most likely to least likely. Needs to be sliced before use.
