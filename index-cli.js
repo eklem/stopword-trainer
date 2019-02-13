@@ -37,6 +37,10 @@ fs.createReadStream(file)
     console.log('An error occured, trying to read: ' + file + '\n' + err)
   })
   .pipe(swt.ndjson.parse())
+  .on('error', function(err) {
+    console.log('\n' + err)
+    return process.kill(process.pid)
+  })
   .on('data', function (obj) {
     swt.termFrequency(obj)
     console.log('Processing document #' + data.docCount)
