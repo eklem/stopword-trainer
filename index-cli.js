@@ -22,12 +22,11 @@ if (program.max) {
 }
 if (program.keys) {
   opts.extractionKeys = program.keys
-  if (program.keys) {
-    opts.extractionKeys = program.keys.split(',')
-    console.log('Will use terms from following fields in objects to calculate stopwords: ' + opts.extractionKeys)
-  } else {
-    console.log('Will use terms from all object values to calculate stopwords')
-  }
+  opts.extractionKeys = program.keys.split(',')
+  console.log('Will use terms from following fields in objects to calculate stopwords: ' + opts.extractionKeys)
+}
+if (!program.keys) {
+  console.log('Will use terms from all object values to calculate stopwords')
 }
 
 console.dir(opts)
