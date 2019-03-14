@@ -19,7 +19,7 @@
   "devDependencies": {
     "tape": "^4.8.0",
     "reuters-21578-json": "0.0.8",
-    "dataset-misc": "0.0.1"
+    "dataset-misc": "0.0.3"
   },
   "keywords": [
     "stopword",
