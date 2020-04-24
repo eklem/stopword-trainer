@@ -17,7 +17,7 @@
     "object-end-keys": "^3.0.1"
   },
   "devDependencies": {
-    "tape": "^4.8.0",
+    "tape": "^5.0.0",
     "reuters-21578-json": "0.0.8",
     "dataset-misc": "0.0.7"
   },
