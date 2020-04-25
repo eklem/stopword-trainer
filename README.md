@@ -6,7 +6,7 @@
 [![NPM downloads](http://img.shields.io/npm/dm/stopword-trainer.svg?style=flat)](https://npmjs.org/package/stopword-trainer)
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 [![Build Status](https://travis-ci.org/eklem/stopword-trainer.svg?branch=master)](https://travis-ci.org/eklem/stopword-trainer)
-[![Greenkeeper badge](https://badges.greenkeeper.io/eklem/stopword-trainer.svg?style=flat)](https://greenkeeper.io/)
+
 
 ## Reasons for generating your own list of stopwords?
 
