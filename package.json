@@ -17,7 +17,7 @@
     "lodash": ">=4.17.15",
     "ndjson": "~1.5.0",
     "object-end-keys": "^3.0.1",
-    "snyk": "^1.316.1"
+    "snyk": "^1.316.2"
   },
   "devDependencies": {
     "tape": "^4.8.0",
