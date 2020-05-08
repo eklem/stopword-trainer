@@ -3,9 +3,10 @@
 `stopword-trainer` is a node module for creating stopword lists based on your own set of documents. These lists can easily be used together with the [`stopword`](https://github.com/fergiemcdowall/stopword/) module to strip stopwords from an input text.
 
 [![NPM version](http://img.shields.io/npm/v/stopword-trainer.svg?style=flat)](https://npmjs.org/package/stopword-trainer)
-[![NPM downloads](http://img.shields.io/npm/dm/stopword-trainer.svg?style=flat)](https://npmjs.org/package/stopword-trainer)
-[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
-[![Build Status](https://travis-ci.org/eklem/stopword-trainer.svg?branch=master)](https://travis-ci.org/eklem/stopword-trainer)
+[![NPM downloads](http://img.shields.io/npm/dm/stopword-trainer.svg?style=flat)](https://npmjs.org/package/stopword-trainer) 
+[![Known Vulnerabilities][snyk-image]][snyk-url] 
+[![Build Status](https://travis-ci.org/eklem/stopword-trainer.svg?branch=master)](https://travis-ci.org/eklem/stopword-trainer) 
+[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE) 
 
 
 ## Reasons for generating your own list of stopwords?
@@ -90,3 +91,6 @@ A simple version of TF-DF (Term Frequency - Document Frequency). The math on how
 ```javascript
 stopWordiness = (termInCorpus / totDocs) * (1 / (Math.log(totDocs/(termInDocs - 1))))
 ```
+
+[snyk-url]: https://snyk.io/test/github/eklem/stopword-trainer?targetFile=package.json
+[snyk-image]: https://snyk.io/test/github/eklem/stopword-trainer/badge.svg?targetFile=package.json
