@@ -17,12 +17,12 @@
     "lodash": ">=4.17.15",
     "ndjson": "~1.5.0",
     "object-end-keys": "^3.0.1",
+    "snyk": "^1.319.0"
   },
   "devDependencies": {
     "tape": "^4.8.0",
     "reuters-21578-json": "0.0.8",
-    "dataset-misc": "0.0.7",
-    "snyk": "^1.319.0"
+    "dataset-misc": "0.0.7"
   },
   "keywords": [
     "stopword",
