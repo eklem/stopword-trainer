@@ -4,9 +4,7 @@
   "description": "A module for creating stopword lists for any language, based on a set of documents.",
   "main": "index.js",
   "scripts": {
-    "test": "node test/basic.js && node test/basic-full.js && node test/fieldedCalculation.js && node test/norwegian.js",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "test": "node test/basic.js && node test/basic-full.js && node test/fieldedCalculation.js && node test/norwegian.js"
   },
   "repository": {
     "type": "git",
@@ -14,10 +12,9 @@
   },
   "dependencies": {
     "commander": "~6.1.0",
-    "lodash": ">=4.17.15",
+    "lodash": "~4.17.20",
     "ndjson": "~2.0.0",
-    "object-end-keys": "^3.0.1",
-    "snyk": "^1.319.1"
+    "object-end-keys": "^3.0.1"
   },
   "devDependencies": {
     "tape": "^5.0.1",
@@ -37,6 +34,5 @@
   "bugs": {
     "url": "https://github.com/eklem/stopword-trainer/issues"
   },
-  "homepage": "https://github.com/eklem/stopword-trainer#readme",
-  "snyk": true
+  "homepage": "https://github.com/eklem/stopword-trainer#readme"
 }
