@@ -1,81 +1,46 @@
-const _      = require('lodash')
-const keys   = require('object-end-keys')
-const ndjson = require('ndjson')
+// just for development
+const wnn = require('words-n-numbers')
+const document = 'er et amerikansk band som ble dannet i 1996 Medlemmene kom fra bandene The Yah Mos Black Liquorice og Popesmashers","Etter en turne sammen bestemte Black Liquorice og Popesmashers seg for å blande førstnevntes disco og funkstil med sistnevntes støyende aggressivitet og slik ble født Bandets navn var inspirert av tekstingen på filmen Gudene må være gale hvor klikkelydene som buskmennene lagde ble skrevet med et  I det internasjonale fonetiske alfabetet er postalveolære klikkkonsonanter representert med  som ikke er et utropstegn men et pipetegn med en prikk under","Deres selvtitulerte debutalbum kom ut i 2000 Oppfølgeren kom i 2003 er kjent for sine katarsiske liveshow'
+const words = wnn.extract(document, { toLowercase: true })
 
-data = {
-  docCount: 0,
-  stopwordArray: [],
-  calculationArray: [],
+// actual code for the module
+// let calculationArray = []
+const wordObjStarter = {
+  word: '',
+  inCorpus: 1,
+  // if inThisDoc is set to false, set to true and increase ++inDocs
+  inThisDoc: false,
+  inDocs: 1,
+  stopWordiness: 0
 }
-opts = {
-  max: 100,
-  extractionKeys: []
-}
+let calculations = []
 
-let termFrequency = function (obj) {
-  if (data.docCount === 0) {
-    getObjValues(obj)
-  }
-  data.docCount++
-  obj = _.map(opts.extractionKeys, _.propertyOf(obj))
-  let text = ''
-  for(var key in opts.extractionKeys) {
-    let value = obj[key]
-    KEY = _.toUpper(key)
-    value = KEY += _.toLower(value)
-    text += (' ' + value)
-  }
-  let textArray = _.words(text)
-  for (let word of textArray) {
-    countWords(word, data.docCount)
-  }
-  //console.log(textArray)
-}
-
-let getObjValues = function(obj) {
-  if (typeof opts.extractionKeys[0] === 'undefined' || typeof opts.extractionKeys[0] === null) {
-    opts.extractionKeys = keys(obj)
-    console.log('keys found in object: ' + opts.extractionKeys)
-  } else {
-    console.log('keys defined: ' + opts.extractionKeys)
-  }
-}
-
-let countWords = function (word, documentId) {
-  if (typeof _.find(data.calculationArray, { 'word': word }) !== "undefined") {
-    let wordAtIndex = _.findIndex(data.calculationArray, {word: word});
-    data.calculationArray[wordAtIndex].inCorpus = data.calculationArray[wordAtIndex].inCorpus + 1
-    // Do check on documentId > lastSpottedIn. If so, inDocs += 1 and lastSpottedIn = documentId
-    if (documentId > data.calculationArray[wordAtIndex].lastSpottedIn) {
-      data.calculationArray[wordAtIndex].inDocs = data.calculationArray[wordAtIndex].inDocs + 1
-      data.calculationArray[wordAtIndex].lastSpottedIn = documentId
+const countWords = function (words, calculations) {
+  // do stuff on each word in words
+  // array1.at(index) <-- not sure if I need it
+  words.forEach((thisWord) => {
+    let wordObj = {}
+    if (calculations.find(({ word }) => word === thisWord)) {
+      // if find word in calculations, alter
+    } else {
+      // if nod populate wordObj from word + wordObjStarter
+      wordObj = { ...wordObjStarter, word: thisWord }
+      calculations = [...calculations, wordObj]
     }
-  } else if (typeof _.find(data.calculationArray, { 'word': word }) === "undefined") {
-    let wordObject = {
-      word: word,
-      inCorpus: 1,
-      inDocs: 1,
-      lastSpottedIn: documentId,
-      stopWordiness: 0
-    }
-    data.calculationArray.push(wordObject)    
-  }
+    console.log(calculations)
+    // push wordObj to calculations
+  })
+  return calculations
 }
 
-let documentFrequency = function (maxStopwords) {
-  for (i = 0; i < data.calculationArray.length; ++i) {
-    data.calculationArray[i].stopWordiness = (data.calculationArray[i].inCorpus / data.docCount) * (1 / (Math.log(data.docCount/(data.calculationArray[i].inDocs - 1))))
-  }
-  data.calculationArray = _.sortBy(data.calculationArray, ['stopWordiness']);
-  data.calculationArray = _.reverse(data.calculationArray)
-  data.stopwordArray = _.map(data.calculationArray, 'word')
-  if (maxStopwords > 0) {
-    data.stopwordArray = data.stopwordArray.slice(0,maxStopwords)
-  }
+const documentFrequency = function () {
+  // stuff here
 }
 
-// Export functions as swt:
-module.exports.getObjValues = getObjValues
-module.exports.termFrequency = termFrequency
-module.exports.documentFrequency = documentFrequency
-module.exports.ndjson = ndjson
+console.log(JSON.stringify(words))
+console.log(wordObjStarter)
+console.log(calculations)
+console.log(countWords)
+console.log(documentFrequency)
+
+countWords(words, calculations)
