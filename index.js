@@ -9,28 +9,39 @@ const wordObjStarter = {
   word: '',
   inCorpus: 1,
   // if inThisDoc is set to false, set to true and increase ++inDocs
-  inThisDocAlready: false,
+  inThisDocAlready: true,
   inDocs: 1,
   stopWordiness: 0
 }
 
 const countWords = function (words, calculations) {
+  // reset inThisDocAlready to false before new document of words
+  if (calculations.length > 0) {
+    calculations.forEach(word => {
+      word.inThisDocAlready = false
+    })
+  }
   // do stuff on each word in words
   words.forEach((thisWord) => {
     let wordObj = {}
     const i = calculations.findIndex(({ word }) => word === thisWord)
+    // checks if word object is undefined in calculations
     if (i === -1) {
       console.log('index - not earlier: ' + i)
       // populate wordObj from thisWord + wordObjStarter
       wordObj = { ...wordObjStarter, word: thisWord }
       calculations = [...calculations, wordObj]
     } else {
-      // find index of word object?
-      //   find((element, index) => { ... } )
-      //     alter incCorpus: ++inCorpus
-      //     check if inThisDocAlready
-      //       if --> inThisDocAready: false and inDocs: ++indDocs
-      console.log('second time or more: ' + thisWord)
+      // index i found - alter word object
+      // alter incCorpus: inCorpus++
+      calculations[i].inCorpus++
+      // check if inThisDocAlready
+      //   if --> inThisDocAready = false
+      //          indDocs++
+      if (calculations[i].inThisDocAlready === false) {
+        calculations[i].inThisDocAlready = true
+        calculations[i].inDocs++
+      }
       console.log('index - earlier: ' + i + ' ' + thisWord)
     }
   })
