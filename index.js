@@ -4,33 +4,39 @@ const document = 'er et amerikansk band som ble dannet i 1996 Medlemmene kom fra
 const words = wnn.extract(document, { toLowercase: true })
 
 // actual code for the module
-// let calculationArray = []
+const calculations = []
 const wordObjStarter = {
   word: '',
   inCorpus: 1,
   // if inThisDoc is set to false, set to true and increase ++inDocs
-  inThisDoc: false,
+  inThisDocAlready: false,
   inDocs: 1,
   stopWordiness: 0
 }
-let calculations = []
 
 const countWords = function (words, calculations) {
   // do stuff on each word in words
-  // array1.at(index) <-- not sure if I need it
   words.forEach((thisWord) => {
     let wordObj = {}
-    if (calculations.find(({ word }) => word === thisWord)) {
-      // if find word in calculations, alter
-    } else {
-      // if nod populate wordObj from word + wordObjStarter
+    const i = calculations.findIndex(({ word }) => word === thisWord)
+    if (i === -1) {
+      console.log('index - not earlier: ' + i)
+      // populate wordObj from thisWord + wordObjStarter
       wordObj = { ...wordObjStarter, word: thisWord }
       calculations = [...calculations, wordObj]
+    } else {
+      // find index of word object?
+      //   find((element, index) => { ... } )
+      //     alter incCorpus: ++inCorpus
+      //     check if inThisDocAlready
+      //       if --> inThisDocAready: false and inDocs: ++indDocs
+      console.log('second time or more: ' + thisWord)
+      console.log('index - earlier: ' + i + ' ' + thisWord)
     }
-    console.log(calculations)
-    // push wordObj to calculations
   })
-  return calculations
+  console.log(calculations.length)
+  console.log(words.length)
+  console.log(calculations)
 }
 
 const documentFrequency = function () {
