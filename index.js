@@ -35,10 +35,10 @@ const countWords = function (words, calculations) {
       // index i found - alter word object
       // alter incCorpus: inCorpus++
       calculations[i].inCorpus++
-      // check if inThisDocAlready
-      //   if --> inThisDocAready = false
-      //          indDocs++
-      if (calculations[i].inThisDocAlready === false) {
+      // check if not inThisDocAlready
+      //   --> inThisDocAready = true
+      //   --> indDocs++
+      if (!calculations[i].inThisDocAlready) {
         calculations[i].inThisDocAlready = true
         calculations[i].inDocs++
       }
