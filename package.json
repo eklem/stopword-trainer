@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/eklem/stopword-trainer.git"
   },
-  "dependencies": {
+  "devDependencies": {
     "words-n-numbers": "5.0.1"
   },
   "keywords": [
