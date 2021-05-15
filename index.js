@@ -10,7 +10,7 @@ const docsArray = [
 ]
 
 // actual code for the module
-let wordsCounted = {
+const wordsCounted = {
   docs: 0,
   words: []
 }
@@ -27,7 +27,6 @@ const wordObjStarter = {
 // ###   A: countWords - populate wordsArray
 // ###   B: stopwordienessCalc - calculate stopwordiness of each word
 // ###   C: getStopwords - weed out redlisted words and cut off
-
 
 // ### A: Create calculation basis
 const countWords = function (words, wordsCounted) {
@@ -76,8 +75,19 @@ const stopwordienessCalc = function (wordsCounted) {
   wordsCounted.words.sort((a, b) => parseFloat(b.stopWordiness) - parseFloat(a.stopWordiness));
 }
 
-const getStopwords = function () {
+const getStopwords = function (wordsCounted) {
   // ###   C: weed out redlisted words and cut off to desired amount of stopwords
+  // TODO: Take cutoff-value?
+  //       Take stopwordiness threshold?
+  //       ... or just make a list of all words with higher stopwordiness than 0
+  //       ... and take a redlist to preserve some words
+  const stopwords = wordsCounted.reduce((stopwordArr, word) => {
+    if (word.stopWordiness > 1) {
+      stopwordArr.push(word.word)
+    }
+    return stopwordArr
+  }, [])
+  return stopwords
 }
 
 // console.log(JSON.stringify(words))
@@ -88,12 +98,13 @@ const getStopwords = function () {
 // console.log(docsArray)
 
 docsArray.forEach((document) => {
-  console.log(document)
+  // console.log(document)
   countWords(document, wordsCounted)
 })
 // console.log(wordsCounted)
 
-
-
 stopwordienessCalc(wordsCounted)
-console.log(wordsCounted)
+// console.log(wordsCounted)
+
+const stopwords = getStopwords(wordsCounted.words)
+console.log(stopwords)
