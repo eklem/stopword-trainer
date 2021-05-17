@@ -51,10 +51,9 @@ const countWords = function (words, wordsCounted) {
 // ### B: calculate stopwordiness of each word
 const stopwordienessCalc = function (wordsCounted) {
   wordsCounted.words.forEach(wordObj => {
-    wordObj.stopWordiness = (wordObj.inCorpus / wordsCounted.docs) * (1 / (Math.log(wordsCounted.docs / (wordObj.inDocs - 1 ))))
+    wordObj.stopWordiness = (wordObj.inCorpus / wordsCounted.docs) * (1 / (Math.log(wordsCounted.docs / (wordObj.inDocs - 1))))
   })
-  wordsCounted.words.sort((a, b) => parseFloat(b.stopWordiness) - parseFloat(a.stopWordiness));
-  console.log(wordsCounted.words)
+  wordsCounted.words.sort((a, b) => parseFloat(b.stopWordiness) - parseFloat(a.stopWordiness))
 }
 
 // ### C: get only words with stopWordiness and check against notRedlisted
@@ -87,6 +86,5 @@ const notRedlisted = function (word, redlist) {
 module.exports = {
   countWords: countWords,
   stopwordienessCalc: stopwordienessCalc,
-  getStopwords: getStopwords,
-  notRedlisted: notRedlisted
+  getStopwords: getStopwords
 }

@@ -16,24 +16,21 @@ const documents = [
   'Sushi x Kobe er en rapgruppe fra Bergen Gruppen består av rapperene Onge ushimane og KobeWan Kenobi Guttene med de originale artistnavnene har holdt på med musikk lenge men startet ikke som gruppe før i desember 2013 De beskriver seg selv som to karakterer som lager fet musikk1 Deres aller første konsert holdt de på UKEN til NHH med over 300 publikummereDe har også avholdt konserter både på byLarm og Roskildefestivalen'
 ]
 const redlist = [
-  'albumet', 'utgitt', 'skrevet', 'musikk', 'live', 'rolling', 'storbritannia', 'usa', 'dollar', 'amerikansk', 'band', 'inspirert',     'kjent',      'konsert', 'studioalbumet', 'records', 'time', 'american', 'norge', 'richard', 'uker', 'hit', 'desember', 'politiet'
+  'albumet', 'utgitt', 'skrevet', 'musikk', 'live', 'rolling', 'storbritannia', 'usa', 'dollar', 'amerikansk', 'band', 'inspirert', 'kjent', 'konsert', 'studioalbumet', 'records', 'time', 'american', 'norge', 'richard', 'uker', 'hit', 'desember', 'politiet'
 ]
+
+const wordsCounted = {
+  docs: 0,
+  words: []
+}
 
 const docsArray = []
 
 documents.forEach(document => {
   docsArray.push(wnn.extract(document, { toLowercase: true }))
 })
-console.log(docsArray)
-
-// actual code for the module
-const wordsCounted = {
-  docs: 0,
-  words: []
-}
 
 docsArray.forEach((document) => {
-  // console.log(document)
   swt.countWords(document, wordsCounted)
 })
 

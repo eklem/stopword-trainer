@@ -4,14 +4,15 @@
   "description": "A module for creating stopword lists for any language, based on a set of documents.",
   "main": "index.js",
   "scripts": {
-    "test": "node test/basic.js && node test/basic-full.js && node test/fieldedCalculation.js && node test/norwegian.js"
+    "test": "standard './*.js' './test/*.js'"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/eklem/stopword-trainer.git"
   },
   "devDependencies": {
-    "words-n-numbers": "5.0.1"
+    "words-n-numbers": "5.0.1",
+    "batr": "^0.2.0"
   },
   "keywords": [
     "stopword",
