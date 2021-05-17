@@ -45,7 +45,8 @@ const wordObjStarter = {
 // ### Two functions for training stopword lists
 // ###   A: countWords - populate wordsArray
 // ###   B: stopwordienessCalc - calculate stopwordiness of each word
-// ###   C: getStopwords - weed out redlisted words and cut off
+// ###   C: getStopwords - get only words with stopWordiness and check against notRedlisted
+// ###   D: notRedlisted - helper function to check if word is not redlisted
 
 // ### A: Create calculation basis
 const countWords = function (words, wordsCounted) {
@@ -86,7 +87,7 @@ const countWords = function (words, wordsCounted) {
   // return wordsCounted
 }
 
-// ###   B: calculate stopwordiness of each word
+// ### B: calculate stopwordiness of each word
 const stopwordienessCalc = function (wordsCounted) {
   wordsCounted.words.forEach(wordObj => {
     wordObj.stopWordiness = (wordObj.inCorpus / wordsCounted.docs) * (1 / (Math.log(wordsCounted.docs / (wordObj.inDocs - 1 ))))
@@ -95,31 +96,32 @@ const stopwordienessCalc = function (wordsCounted) {
   console.log(wordsCounted.words)
 }
 
-// ###   C: weed out redlisted words and cut off to desired amount of stopwords
+// ### C: get only words with stopWordiness and check against notRedlisted
 const getStopwords = function (wordsCounted, redlist) {
-  // TODO  ... Spread-syntax on redlist
-  //       ... then check if not equal []
-  // TODO  ... or just make a list of all words with higher stopwordiness than 0
-  //       ... and take a redlist to preserve some words (first this)
+  // populate empty redlist if no redlist given
+  if (redlist === undefined) {
+    redlist = []
+  }
+
+  // reduce wordsCounted to only those with stopWordiness and notRedlisted
   const stopwords = wordsCounted.reduce((stopwordArr, word) => {
-    if (word.stopWordiness > 0) {
+    if (word.stopWordiness > 0 && notRedlisted(word.word, redlist)) {
       stopwordArr.push(word.word)
     }
     return stopwordArr
   }, [])
-  // Create a function that takes word.word and checks against redlist.
-  // Use this as a && notRedListed(word.word)
-  // Use .indexOf
-  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf
   return stopwords
 }
 
-// console.log(JSON.stringify(words))
-// console.log(wordObjStarter)
-// console.log(wordsCounted)
-// console.log(countWords)
-// console.log(stopwordienessCalc)
-// console.log(docsArray)
+// ### D: notRedlisted - helper function to check if word is not redlisted
+const notRedlisted = function (word, redlist) {
+  // if found in index, return false
+  if (redlist.indexOf(word) > -1) {
+    return false
+  } else {
+    return true
+  }
+}
 
 docsArray.forEach((document) => {
   // console.log(document)
@@ -130,5 +132,5 @@ docsArray.forEach((document) => {
 stopwordienessCalc(wordsCounted)
 // console.log(wordsCounted)
 
-const stopwords = getStopwords(wordsCounted.words)
+const stopwords = getStopwords(wordsCounted.words, redlist)
 console.log(stopwords)
