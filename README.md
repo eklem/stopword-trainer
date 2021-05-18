@@ -30,7 +30,7 @@ If you're trying to make a list of stopwords but have some problems, [open an is
 
 ## Usage
 
-### Javascript example
+### Node example
 ```javascript
 const swt = require('stopword-trainer')
 
@@ -49,7 +49,12 @@ const documents = [
   'Kuppet eller Dollar på tynn is 1 Originaltittel  også kjent som Dollars og The Heist er en amerikansk krimkomedie fra 1971 med Goldie Hawn og Warren Beatty i hovedrollene Regi er ved Richard Brooks En ekspert på bankers sikkerhetssystemer Beatty robber sammen med en prostituert Hawn en bank i Hamburg for svarte penger Dermed kan ingen melde ham til politiet Dette forhindrer likevel ikke at han får diverse personer på nakken når innbruddet blir oppdaget Utvalg',
   'Sushi x Kobe er en rapgruppe fra Bergen Gruppen består av rapperene Onge ushimane og KobeWan Kenobi Guttene med de originale artistnavnene har holdt på med musikk lenge men startet ikke som gruppe før i desember 2013 De beskriver seg selv som to karakterer som lager fet musikk1 Deres aller første konsert holdt de på UKEN til NHH med over 300 publikummereDe har også avholdt konserter både på byLarm og Roskildefestivalen'
 ]
+// all the words you don't want in your stopword list. Could just be some often used nouns
+// ... or other words that holds meaning but are used a little too often
 const redlist = ['albumet', 'utgitt', 'skrevet', 'musikk', 'live', 'rolling', 'storbritannia', 'usa', 'dollar', 'amerikansk', 'band', 'inspirert', 'kjent', 'konsert', 'studioalbumet', 'records', 'time', 'american', 'norge', 'richard', 'uker', 'hit', 'desember', 'politiet']
+
+// Haven't figured out how to not have to define this object up-front.
+// Also, good to get the practice before re-training your word list.
 const wordsCounted = { docs: 0, words: [] }
 const docsWordsArray = []
 
