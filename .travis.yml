@@ -1,0 +1,11 @@
+sudo: false
+language: node_js
+notifications:
+  slack: norch:wLsHiXjnAH5BdtTq3qtAqGp7
+  email: true
+node_js:
+  - '12'
+  - '14'
+  - '16'
+before_script:
+  - npm prune
