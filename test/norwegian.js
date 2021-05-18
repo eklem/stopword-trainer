@@ -1,14 +1,20 @@
 const swt = require('../index.js')
 const test = require('ava').default
 const wnn = require('words-n-numbers')
-const documents = require('../node_modules/dataset-misc/docs-no-nb-justTen.json')
+let documents = require('../node_modules/dataset-misc/docs-no-nb-justTen.json')
 const redlistNorwegianText = ['albumet', 'utgitt', 'skrevet', 'musikk', 'live', 'rolling', 'storbritannia', 'usa', 'dollar', 'amerikansk', 'band', 'inspirert', 'kjent', 'konsert', 'studioalbumet', 'records', 'time', 'american', 'norge', 'richard', 'uker', 'hit', 'desember', 'politiet']
 
 const wordsCounted = { docs: 0, words: [] }
 const docsWordsArray = []
 
+documents = documents.map(function (obj) {
+  const objArr = Object.values(obj)
+  return objArr.join(' ')
+})
+
 documents.forEach(document => {
-  docsWordsArray.push(wnn.extract(document, { regex: wnn.wordsNumbers, toLowercase: true }))
+  document = wnn.extract(document, { regex: wnn.wordsNumbers, toLowercase: true })
+  docsWordsArray.push(document)
 })
 
 docsWordsArray.forEach((document) => {
