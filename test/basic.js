@@ -6,7 +6,7 @@ const json = require('../node_modules/reuters-21578-json/data/justTen/justTen.js
 const wordsCounted = { docs: 0, words: [] }
 const docsWordsArray = []
 const regex = /[\r\n]+/g
-const subst = ` `
+const subst = ' '
 
 const documents = json.map(function (obj) {
   const objArr = Object.values(obj)
