@@ -4,9 +4,8 @@ notifications:
   slack: norch:wLsHiXjnAH5BdtTq3qtAqGp7
   email: true
 node_js:
-  - '6'
-  - '8'
-  - '10'
   - '12'
+  - '14'
+  - '16'
 before_script:
   - npm prune
