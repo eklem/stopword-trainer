@@ -1,5 +1,5 @@
 const swt = require('../index.js')
-const test = require('ava').default
+const test = require('ava')
 const wnn = require('words-n-numbers')
 let documents = require('../node_modules/dataset-misc/docs-no-nb-justTen.json')
 const redlistNorwegianText = ['albumet', 'utgitt', 'skrevet', 'musikk', 'live', 'rolling', 'storbritannia', 'usa', 'dollar', 'amerikansk', 'band', 'inspirert', 'kjent', 'konsert', 'studioalbumet', 'records', 'time', 'american', 'norge', 'richard', 'uker', 'hit', 'desember', 'politiet']

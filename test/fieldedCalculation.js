@@ -1,5 +1,5 @@
 const swt = require('../index.js')
-const test = require('ava').default
+const test = require('ava')
 const wnn = require('words-n-numbers')
 const json = require('../node_modules/reuters-21578-json/data/full/reuters-000.json')
 
