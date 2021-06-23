@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./mini-default.min.css">
     <link rel="stylesheet" href="./mini-additions.css">
-    <script src="../dist/headline-parser.js"></script>
-    <script src="https://fergiemcdowall.github.io/stopword/dist/stopword.latest.js"></script>
+    <script src="../dist/words-n-numbers.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/words-n-numbers@5.0.1/dist/words-n-numbers.js"></script>
     <title>Stopword-trainer browser demo</title>
   </head>
 
@@ -23,11 +23,11 @@
 
       <div id="documents">
         <h2>Documents</h2>
-        <input type="text" id="doctext01" placeholder="Add text for document 1" /><br />
-        <input type="text" id="doctext02" placeholder="Add text for document 2" /><br />
-        <input type="text" id="doctext03" placeholder="Add text for document 3" /><br />
-        <input type="text" id="doctext04" placeholder="Add text for document 4" /><br />
-        <input type="text" id="doctext05" placeholder="Add text for document 5" /><br />
+        <textarea id="doctext1" placeholder="Add text for document 1" rows="2"></textarea>
+        <textarea id="doctext2" placeholder="Add text for document 2" rows="2"></textarea>
+        <textarea id="doctext3" placeholder="Add text for document 3" rows="2"></textarea>
+        <textarea id="doctext4" placeholder="Add text for document 4" rows="2"></textarea>
+        <textarea id="doctext5" placeholder="Add text for document 5" rows="2"></textarea>
       </div>
     </div>
 
@@ -36,6 +36,6 @@
       <div id="keywordsFound"></div>
     </div>
 
-    <script src="./headline-parser-app.js"></script>
+    <script src="./stopword-trainer-app.js"></script>
   </body>
 </html> 
