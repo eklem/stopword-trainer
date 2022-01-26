@@ -1,6 +1,6 @@
 {
   "name": "stopword-trainer",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A module for creating stopword lists for any language, based on a set of documents.",
   "main": "index.js",
   "scripts": {
@@ -11,10 +11,10 @@
     "url": "git+https://github.com/eklem/stopword-trainer.git"
   },
   "devDependencies": {
-    "batr": "^2.0.0",
+    "batr": "^2.0.1",
     "dataset-misc": "0.0.8",
     "reuters-21578-json": "0.0.8",
-    "words-n-numbers": "6.0.2"
+    "words-n-numbers": "7.0.0"
   },
   "keywords": [
     "stopword",

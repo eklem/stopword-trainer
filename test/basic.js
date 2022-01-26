@@ -16,7 +16,7 @@ const documents = json.map(function (obj) {
 documents.forEach(document => {
   if (document !== undefined) {
     document = document.replace(regex, subst)
-    document = wnn.extract(document, { regex: wnn.wordsNumbers, toLowercase: true })
+    document = wnn.extract(document, { regex: [wnn.words, wnn.numbers], toLowercase: true })
     docsWordsArray.push(document)
   }
 })

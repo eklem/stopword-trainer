@@ -13,7 +13,7 @@ documents = documents.map(function (obj) {
 })
 
 documents.forEach(document => {
-  document = wnn.extract(document, { regex: wnn.wordsNumbers, toLowercase: true })
+  document = wnn.extract(document, { regex: [wnn.words, wnn.numbers], toLowercase: true })
   docsWordsArray.push(document)
 })
 
