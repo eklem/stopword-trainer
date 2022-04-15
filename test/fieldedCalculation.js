@@ -5,16 +5,14 @@ const json = require('../node_modules/reuters-21578-json/data/full/reuters-000.j
 
 const wordsCounted = { docs: 0, words: [] }
 const docsWordsArray = []
-// const regex = /[\r\n]+/g
-// const subst = ' '
 
 const documents = json.map(function (obj) {
   return obj.body
 })
+console.log(documents)
 
 documents.forEach(document => {
   if (document !== undefined) {
-    // document = document.replace(regex, subst)
     document = wnn.extract(document, { regex: [wnn.words, wnn.numbers], toLowercase: true })
     docsWordsArray.push(document)
   }
