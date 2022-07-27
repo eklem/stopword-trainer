@@ -75,8 +75,8 @@ swt.stopwordienessCalc(wordsCounted)
 
 // Creates an array of possible stopwords - words with stopWordiness > 0
 // Filters out redlisted words. Words that may be used often, but that you don't want to weed out
-// List (array) still needs to be sliced to a proper length.
-const stopwords = swt.getStopwords(wordsCounted.words, redlist)
+// Returns start of array (up to maxReturn, if list is that long or longer).
+const stopwords = swt.getStopwords(wordsCounted.words, redlist, maxReturn)
 console.log(stopwords)
 ```
 

@@ -25,7 +25,7 @@ swt.stopwordienessCalc(wordsCounted)
 
 test('25 stopwords calculated on docs-no-nb-justTen.json (10 documents)', (t) => {
   const expected = ['i', 'er', 'og', 'en', 'med', 'av', 'som', 'på', 'det', 'til', 'ble', 'ut', 'for', 'var', 'fra', 'de', 'et', 'the', 'ikke', 'albumet', 'den', 'at', 'to', 'kom', 'å']
-  const actual = swt.getStopwords(wordsCounted.words).slice(0, 25)
+  const actual = swt.getStopwords(wordsCounted.words, undefined, 25)
   t.deepEqual(actual, expected)
 })
 

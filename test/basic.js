@@ -30,7 +30,7 @@ docsWordsArray.forEach((document) => {
 swt.stopwordienessCalc(wordsCounted)
 
 test('100 stopwords calculated on body-field in reuters-000.json (1000 documents)', (assert) => {
-  const stopwords = swt.getStopwords(wordsCounted.words).slice(0, 10)
+  const stopwords = swt.getStopwords(wordsCounted.words, undefined, 10)
   const expected = ['the', 'to', 'and', 'of', 'feb', '15', '1987', '26', 'reuter', 'said']
   assert.deepEqual(stopwords, expected)
 })

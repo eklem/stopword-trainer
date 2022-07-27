@@ -57,7 +57,12 @@ const stopwordienessCalc = function (wordsCounted) {
 }
 
 // ### C: get only words with stopWordiness and check against notRedlisted
-const getStopwords = function (wordsCounted, redlist) {
+const getStopwords = function (wordsCounted, redlist, maxReturn) {
+  if (!maxReturn || wordsCounted.length < maxReturn) {
+    maxReturn = wordsCounted.length
+  }
+  console.log('maxreturn: ' + maxReturn)
+
   // populate empty redlist if no redlist given
   if (redlist === undefined) {
     redlist = []
@@ -70,7 +75,7 @@ const getStopwords = function (wordsCounted, redlist) {
     }
     return stopwordArr
   }, [])
-  return stopwords
+  return stopwords.slice(0, maxReturn)
 }
 
 // ### D: notRedlisted - helper function to check if word is not redlisted
@@ -84,7 +89,7 @@ const notRedlisted = function (word, redlist) {
 }
 
 module.exports = {
-  countWords: countWords,
-  stopwordienessCalc: stopwordienessCalc,
-  getStopwords: getStopwords
+  countWords,
+  stopwordienessCalc,
+  getStopwords
 }
