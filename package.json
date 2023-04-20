@@ -14,7 +14,7 @@
     "batr": "^2.1.7",
     "dataset-misc": "0.0.8",
     "reuters-21578-json": "0.0.8",
-    "words-n-numbers": "7.1.2"
+    "words-n-numbers": "8.0.0"
   },
   "keywords": [
     "stopword",
